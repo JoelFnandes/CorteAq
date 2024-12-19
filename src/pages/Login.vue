@@ -1,17 +1,17 @@
 <template>
-    <v-container style="padding: 0; margin: 0;">
-      <v-row style="display: flex; align-items: center; height: 100%;">
+    <div style="height: 100vh; width: 100vw; margin: 0; padding: 0;">
+      <v-row style="display: flex; align-items: center; height: 100vh;">
         <!-- Imagem -->
-        <v-col cols="12" md="7" class="d-none d-md-flex" style=" height: 100%;padding: 0;margin-top: 12px;">
-          <img src="@/assets/barber-login.png" alt="Barber Image" class="login-image" />
+        <v-col cols="12" md="7" style="height: 100%; padding: 0; margin: 0;" >
+          <v-img cover  src="@/assets/barber-login2.jpg" alt="Barber Image" style="height: 100%" class="login-image mt-3" />
         </v-col>
   
         <!-- Formulário -->
-        <v-col cols="12" md="5" class="d-flex align-center justify-center">
+        <v-col cols="12" md="5" class="d-flex align-center justify-center" style="height: 100%">
           <LoginForm />
         </v-col>
       </v-row>
-    </v-container>
+    </div>
   </template>
   
   <script>
@@ -30,10 +30,6 @@
     height: 100%;
   }
 
-  .login-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  
   </style>
   

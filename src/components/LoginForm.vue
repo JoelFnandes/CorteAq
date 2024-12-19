@@ -1,11 +1,11 @@
 <template>
-    <v-container class="w-50" style="display: flex; flex-direction: column; gap: 5em;">
+    <v-container  style="display: flex; flex-direction: column; justify-content: center; gap: 5em; padding: 0px 15% 0px 15%; ">
         <div>
             <h2 class="text-center">Bem-vindo!</h2>
             <p class="text-center">Entre ou registre-se para acessar a plataforma</p>
         </div>
 
-        <v-form>
+        <v-form class="px-5 text-center">
 
             <v-text-field v-model="email" :readonly="loading" :rules="[required]" class="mb-2" label="Email"
                 placeholder="Insira seu email" clearable></v-text-field>
@@ -14,16 +14,18 @@
                 :type="showPassword ? 'text' : 'password'" label="Senha" placeholder="Insira sua senha" clearable
                 append-inner-icon="mdi-eye" @click:append-inner="showPassword = !showPassword"></v-text-field>
 
-            <v-btn color="primary" block>Entrar</v-btn>
+            <v-btn color="primary" class="mt-3" rounded="xl" min-width="150px" variant="flat" @click="doLogin()">Entrar</v-btn>
         </v-form>
 
         <p class="text-center mt-4">
-            Ainda não possui uma conta? <a href="/register">Cadastrar-se</a>
+            Ainda não possui uma conta? <a href="/registro" class="text-primary">Cadastrar-se</a>
         </p>
     </v-container>
 </template>
 
 <script>
+import AuthenticationRoutes from '@/api/AuthenticationRoutes';
+import LoginDTO from "@/dto/LoginDTO"
 export default {
     data() {
         return {
@@ -34,5 +36,15 @@ export default {
             showPassword: false, // Controle da visibilidade da senha
         };
     },
+    methods: {
+        async doLogin() {
+            let data = new LoginDTO({username: this.email, password: this.password})
+            console.log(data)
+            console.log(data.toJSON())
+            const response = await AuthenticationRoutes.login(data.toJSON())
+
+            console.log(response);
+        }
+    }
 };
 </script>
