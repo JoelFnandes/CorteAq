@@ -39,11 +39,9 @@ export default {
     methods: {
         async doLogin() {
             let data = new LoginDTO({username: this.email, password: this.password})
-            console.log(data)
-            console.log(data.toJSON())
             const response = await AuthenticationRoutes.login(data.toJSON())
 
-            console.log(response);
+            console.log(response.data);
         }
     }
 };
