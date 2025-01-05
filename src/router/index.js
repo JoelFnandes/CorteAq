@@ -15,7 +15,7 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
-    component: () => import('@/pages/Home.vue')
+    component: () => import('@/pages/HomeCliente.vue')
   }
   // Outras rotas...
 ];
