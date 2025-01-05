@@ -40,8 +40,16 @@ export default {
         async doLogin() {
             let data = new LoginDTO({username: this.email, password: this.password})
             const response = await AuthenticationRoutes.login(data.toJSON())
+            if(response.status == 200) {
+                const token = response.data.token
+                this.storeToken(token)
+                this.$router.push({name: 'Home'})
+            }
+            
+        },
 
-            console.log(response.data);
+        storeToken(token) {
+            localStorage.setItem("token", token)
         }
     }
 };

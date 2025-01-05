@@ -4,28 +4,35 @@ import Login from '@/pages/Login.vue';
 const routes = [
   {
     path: '/',
-    redirect: '/login', 
+    redirect: '/login',
   },
   {
     path: '/login',
     name: 'Login',
-    component: () => import('@/pages/Login.vue'), 
+    component: () => import('@/pages/Login.vue'),
   },
+
+  {
+    path: '/home',
+    name: 'Home',
+    component: () => import('@/pages/Home.vue')
+  }
   // Outras rotas...
 ];
 
-// router.beforeEach((to, from, next) => {
-//   const isAuthenticated = localStorage.getItem('authToken'); // Exemplo de autenticação simples
-//   if (to.name !== 'Login' && !isAuthenticated) {
-//     next({ name: 'Login' });
-//   } else {
-//     next();
-//   }
-// });
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = localStorage.getItem('token'); // Exemplo de autenticação simples
+  if (to.name !== 'Login' && !isAuthenticated) {
+    next({ name: 'Login' });
+  } else {
+    next();
+  }
 });
 
 export default router;
