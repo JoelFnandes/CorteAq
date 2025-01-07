@@ -1,11 +1,10 @@
 <template>
   <v-col md="3" cols="12">
-    <v-card>
-      <v-img :src="barber.image" height="200px"></v-img>
-
+    <v-card :color="color" height="260" width="400px">
+      <v-img :src="barber.image" height="120px"></v-img>
+      <v-divider></v-divider>
       <v-card-title>{{ barber.name }}</v-card-title>
-
-      <v-card-text>
+      <v-card-text style="padding-bottom: 0">
         Especialidade: {{ barber.specialty }}<br>
         Avaliação: {{ barber.rating }} ⭐
       </v-card-text>
@@ -26,6 +25,10 @@ export default {
     barber: {
       type: Object,
       required: true,
+    },
+    color: {
+      type: String,
+      default: "white", // Cor padrão se nenhuma for informada
     },
   },
   methods: {
