@@ -16,8 +16,13 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: () => import('@/pages/HomeCliente.vue')
+  },
+
+  {
+    path: "/registro",
+    name: 'Register',
+    component: () => import('@/pages/Register.vue')
   }
-  // Outras rotas...
 ];
 
 
@@ -26,13 +31,13 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
-  const isAuthenticated = localStorage.getItem('token'); // Exemplo de autenticação simples
-  if (to.name !== 'Login' && !isAuthenticated) {
-    next({ name: 'Login' });
-  } else {
-    next();
-  }
-});
+// router.beforeEach((to, from, next) => {
+//   const isAuthenticated = localStorage.getItem('token'); // Exemplo de autenticação simples
+//   if ((to.name !== 'Login' || to.name !== 'Register') && !isAuthenticated) {
+//     next({ name: 'Login' });
+//   } else {
+//     next();
+//   }
+// });
 
 export default router;
