@@ -1,21 +1,26 @@
 <template>
-  <v-col md="3" cols="12">
-    <v-card :color="color" height="260" width="400px">
-      <v-img :src="barber.image" height="120px"></v-img>
-      <v-divider></v-divider>
-      <v-card-title>{{ barber.name }}</v-card-title>
-      <v-card-text style="padding-bottom: 0">
-        Especialidade: {{ barber.specialty }}<br>
-        Avaliação: {{ barber.rating }} ⭐
-      </v-card-text>
 
-      <v-card-actions>
-        <v-btn color="primary" @click="bookAppointment(barber.id)">
-          Agendar
-        </v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-col>
+  <v-card :color="color" height="260" width="200px" hover>
+    <v-img :src="barber.image" cover height="120px"></v-img>
+    <v-divider></v-divider>
+    <v-card-title class="d-flex flex-wrap justify-space-between align-center">
+      {{ barber.name }}
+      <span class="text-caption float-right d-flex align-center text-blue-grey">
+        <v-icon size="xs" color="amber" style="margin-right: 2px;">mdi-star</v-icon>
+        {{ barber.rating }}
+      </span>
+    </v-card-title>
+    <v-card-text class="text-medium-emphasis text-grey">
+      {{ barber.specialty }}<br>
+    </v-card-text>
+
+    <v-card-actions>
+      <v-btn color="primary" @click="bookAppointment(barber.id)">
+        Agendar
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+
 </template>
 
 <script>
@@ -40,6 +45,4 @@ export default {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
