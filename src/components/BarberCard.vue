@@ -1,6 +1,5 @@
 <template>
-
-  <v-card :color="color" height="260" width="200px" hover>
+  <v-card :color="color" height="260" width="250px" hover>
     <v-img :src="barber.image" cover height="120px"></v-img>
     <v-divider></v-divider>
     <v-card-title class="d-flex flex-wrap justify-space-between align-center">
@@ -11,38 +10,41 @@
       </span>
     </v-card-title>
     <v-card-text class="text-medium-emphasis text-grey">
-      {{ barber.specialty }}<br>
+      {{ barber.speciality }}<br>
     </v-card-text>
 
     <v-card-actions>
-      <v-btn color="primary" @click="bookAppointment(barber.id)">
+
+      <v-btn color="primary" @click="$refs.barberModal.openDialog(barber)">
         Agendar
       </v-btn>
     </v-card-actions>
+
+    <BarberModal ref="barberModal" />
   </v-card>
 
 </template>
 
 <script>
-export default {
-  name: "BarberCard",
-  props: {
-    barber: {
-      type: Object,
-      required: true,
+
+  import BarberModal from "@/components/BarberModal.vue";
+
+  export default {
+    name: "BarberCard",
+    components: {BarberModal},
+
+    props: {
+      barber: {
+        type: Object,
+        required: true,
+      },
+      color: {
+        type: String,
+        default: "white",
+      },
     },
-    color: {
-      type: String,
-      default: "white", // Cor padrão se nenhuma for informada
-    },
-  },
-  methods: {
-    bookAppointment(barberId) {
-      // Aqui você pode colocar sua lógica de agendamento
-      console.log("Agendar com barbeiro:", barberId);
-    },
-  },
-};
+    emits: ['open-dialog'],
+  };
 </script>
 
 <style scoped></style>
